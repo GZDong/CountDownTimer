@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="Stopwatch">
+        <attr name="txtSize" format="integer"/>
+        <attr name="txtColor" format="color"/>
+        <attr name="isShowUnit" format="boolean"/>
+        <attr name="isShowInit" format="boolean"/>
+    </declare-styleable>
+
+</resources>
