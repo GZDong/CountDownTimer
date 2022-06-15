@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.Toast
+import com.gzdong.countdowntimer.view.GCountDownTimer
 import com.gzdong.countdowntimer.view.Stopwatch
 
 class MainActivity : AppCompatActivity() {
@@ -20,6 +21,11 @@ class MainActivity : AppCompatActivity() {
         }
         findViewById<Button>(R.id.btn_reset).setOnClickListener {
             findViewById<Stopwatch>(R.id.stopWatch).reset()
+        }
+        findViewById<Button>(R.id.btn_start1).setOnClickListener {
+            findViewById<GCountDownTimer>(R.id.gCountDownTimer).start(40 * 60 * 1000,  1000) {
+                Toast.makeText(this, "Finish", Toast.LENGTH_LONG).show()
+            }
         }
     }
 }

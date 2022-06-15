@@ -8,4 +8,17 @@
         <attr name="isShowInit" format="boolean"/>
     </declare-styleable>
 
+    <declare-styleable name="CountDownTimer">
+        <attr name="text_size" format="integer"/>
+        <attr name="text_color" format="color"/>
+        <attr name="unit_str_day" format="string"/>
+        <attr name="unit_str_hour" format="string"/>
+        <attr name="unit_str_minute" format="string"/>
+        <attr name="unit_str_second" format="string"/>
+        <attr name="delimiter_day_hour" format="string"/>
+        <attr name="delimiter_hour_minute" format="string"/>
+        <attr name="delimiter_minute_second" format="string"/>
+        <attr name="format" format="string"/>
+    </declare-styleable>
+
 </resources>

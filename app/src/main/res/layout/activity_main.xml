@@ -12,12 +12,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@color/black"
-        app:txtSize="11"
+        app:txtSize="15"
         app:txtColor="@color/white"
         app:isShowUnit="true"
         app:isShowInit="true"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -27,7 +26,6 @@
         android:layout_height="50dp"
         android:text="Start"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.7" />
@@ -38,7 +36,6 @@
         android:layout_height="50dp"
         android:text="Stop"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.79" />
@@ -49,9 +46,40 @@
         android:layout_height="50dp"
         android:text="Reset"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.88" />
+
+
+    <com.gzdong.countdowntimer.view.GCountDownTimer
+        android:id="@+id/gCountDownTimer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/black"
+        app:text_size="10"
+        app:text_color="@color/white"
+        app:format="d:h:m:s"
+        app:unit_str_day="天"
+        app:unit_str_hour="时"
+        app:unit_str_minute="分"
+        app:unit_str_second="秒"
+        app:delimiter_day_hour=""
+        app:delimiter_hour_minute=""
+        app:delimiter_minute_second=""
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+
+    <Button
+        android:id="@+id/btn_start1"
+        android:layout_width="120dp"
+        android:layout_height="50dp"
+        android:text="Start"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.7" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
