@@ -38,7 +38,9 @@ class Stopwatch : SurfaceView, SurfaceHolder.Callback {
         override fun onActivityStarted(activity: Activity) {}
 
         override fun onActivityResumed(activity: Activity) {
-            if (activity.findViewById<View>(android.R.id.content).tag.toString().contains(TAG)) {
+            if (activity.findViewById<View>(android.R.id.content).tag != null &&
+                activity.findViewById<View>(android.R.id.content).tag.toString().contains(TAG)
+            ) {
                 onResume()
             }
         }

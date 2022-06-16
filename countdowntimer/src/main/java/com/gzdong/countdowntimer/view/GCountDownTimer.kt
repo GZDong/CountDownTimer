@@ -17,6 +17,7 @@ import android.widget.Toast
 import com.gzdong.countdowntimer.R
 import com.gzdong.countdowntimer.utils.DelayExecutor
 import com.gzdong.countdowntimer.utils.OnDelayExecutorListener
+import java.util.concurrent.Executors
 
 private const val TAG = "countDownTimerActivity"
 const val FORMAT_1 = "d:h:m:s"
@@ -53,13 +54,17 @@ class GCountDownTimer : SurfaceView, SurfaceHolder.Callback {
     private var txtSize = 12f
     private var textColor = 0
     private var textWidth = 0f
+    var finishedListener: OnCountDownFinishedListener? = null
+    private val singleThreadExecutor = Executors.newSingleThreadExecutor()
     private val onContextLifecycleListener = object : Application.ActivityLifecycleCallbacks {
         override fun onActivityCreated(activity: Activity, savedInstanceState: Bundle?) {}
 
         override fun onActivityStarted(activity: Activity) {}
 
         override fun onActivityResumed(activity: Activity) {
-            if (activity.findViewById<View>(android.R.id.content).tag.toString().contains(TAG)) {
+            if (activity.findViewById<View>(android.R.id.content).tag != null &&
+                activity.findViewById<View>(android.R.id.content).tag.toString().contains(TAG)
+            ) {
                 onResume()
             }
         }
@@ -212,12 +217,15 @@ class GCountDownTimer : SurfaceView, SurfaceHolder.Callback {
             Toast.makeText(context, "interval must more than 1000", Toast.LENGTH_SHORT).show()
             return
         }
+        countDownTimer?.cancel()
         countDownTimer = null
         countDownTimer = object : CountDownTimer(milliSecond, interval) {
             override fun onTick(milliTime: Long) {
-                time = milliTime / 1000
-                timeFormat(time.toInt())
-                runLogic()
+                singleThreadExecutor.execute {
+                    time = milliTime / 1000
+                    timeFormat(time.toInt())
+                    runLogic()
+                }
             }
 
             override fun onFinish() {
@@ -226,6 +234,15 @@ class GCountDownTimer : SurfaceView, SurfaceHolder.Callback {
             }
         }.start()
         isFinished = interval != 1000L
+    }
+
+    fun staticSetTime(milliSecond: Long) {
+        singleThreadExecutor.execute {
+            isAlive = true
+            time = milliSecond / 1000
+            timeFormat(time.toInt())
+            runLogic()
+        }
     }
 
     private fun timeFormat(seconds: Int) {
@@ -376,5 +393,13 @@ class GCountDownTimer : SurfaceView, SurfaceHolder.Callback {
             sp,
             context.resources.displayMetrics
         )
+    }
+
+    interface OnCountDownFinishedListener {
+        fun onFinished()
+    }
+
+    fun finishCountDown() {
+        finishedListener?.onFinished()
     }
 }
