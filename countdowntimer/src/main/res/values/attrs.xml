@@ -9,8 +9,8 @@
     </declare-styleable>
 
     <declare-styleable name="CountDownTimer">
-        <attr name="text_size" format="integer"/>
-        <attr name="text_color" format="color"/>
+        <attr name="t_size" format="integer"/>
+        <attr name="t_color" format="color"/>
         <attr name="unit_str_day" format="string"/>
         <attr name="unit_str_hour" format="string"/>
         <attr name="unit_str_minute" format="string"/>

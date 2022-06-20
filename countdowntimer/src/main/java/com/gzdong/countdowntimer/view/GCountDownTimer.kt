@@ -97,13 +97,16 @@ class GCountDownTimer : SurfaceView, SurfaceHolder.Callback {
     private fun initView(context: Context, attrs: AttributeSet?, defStyleAttr: Int) {
         if (context is Activity) {
             val contentView = context.findViewById<View>(android.R.id.content)
-            contentView.tag = TAG
+            if (contentView.tag == null) {
+                contentView.tag = " "
+            }
+            contentView.tag = contentView.tag.toString() + TAG
             context.application.registerActivityLifecycleCallbacks(onContextLifecycleListener)
         }
         val typedArray =
             context.theme.obtainStyledAttributes(attrs, R.styleable.CountDownTimer, defStyleAttr, 0)
-        txtSize = typedArray.getInt(R.styleable.CountDownTimer_text_size, 12).toFloat()
-        textColor = typedArray.getColor(R.styleable.CountDownTimer_text_color, Color.WHITE)
+        txtSize = typedArray.getInt(R.styleable.CountDownTimer_t_size, 12).toFloat()
+        textColor = typedArray.getColor(R.styleable.CountDownTimer_t_color, Color.WHITE)
         delimiter_day_hour =
             typedArray.getString(R.styleable.CountDownTimer_delimiter_day_hour) ?: ":"
         delimiter_hour_minute =

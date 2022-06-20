@@ -73,7 +73,10 @@ class Stopwatch : SurfaceView, SurfaceHolder.Callback {
     private fun initView(context: Context, attrs: AttributeSet?, defStyleAttr: Int) {
         if (context is Activity) {
             val contentView = context.findViewById<View>(android.R.id.content)
-            contentView.tag = TAG
+            if (contentView.tag == null) {
+                contentView.tag = " "
+            }
+            contentView.tag = contentView.tag.toString() + TAG
             context.application.registerActivityLifecycleCallbacks(onContextLifecycleListener)
         }
         val typedArray =
