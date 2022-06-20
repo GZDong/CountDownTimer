@@ -15,7 +15,7 @@ class ListActivity : AppCompatActivity() {
         setContentView(R.layout.activity_list)
         val data = mutableListOf<ListItemInfo>()
         for (i in 0..50) {
-            data.add(ListItemInfo("name$i", (i + 1) * 6000L))
+            data.add(ListItemInfo("name$i", (i + 1) * 600000L))
         }
         val listCountDownTimerDispatcher = ListCountDownTimerDispatcher(data.map { it.time })
         val adapter = ListAdapter(this, data, listCountDownTimerDispatcher)
